@@ -41,7 +41,7 @@
                             <header class="post-header">
                                 <div class="category">
                                     {% for cat in obj.category.all %}
-                                        <a href="#">{{ cat.title }}</a>
+                                        <a href="#">{{ cat }}</a>
                                     {% endfor %}
                                 </div>
                                 <a href="post.html">
@@ -80,31 +80,33 @@
     </section>
     <!-- Latest Posts -->
     <section class="latest-posts">
-      <div class="container">
-        <header>
-          <h2>Latest from the blog</h2>
-          <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </header>
-        <div class="row">
-          {% for obj in latest %}
-          <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date">{{ obj.timestamp }}</div>
-                <div class="category">
-                  {% for cat in obj.category.all %}
-                  <a href="#">{{ cat }}</a>
-                  {% endfor %}
-                  </div>
-              </div><a href="#">
-                <h3 class="h4">{{ obj.title }}</h3></a>
-              <p class="text-muted">{{ obj.overview|linebreaks|truncatechars:200 }}</p>
+        <div class="container">
+            <header>
+                <h2>Latest from the blog</h2>
+                <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </header>
+            <div class="row">
+                {% for obj in latest %}
+                    <div class="post col-md-4">
+                        <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="..."
+                                                                     class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date">{{ obj.timestamp }}</div>
+                                <div class="category">
+                                    {% for cat in obj.category.all %}
+                                        <a href="#">{{ cat }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h3 class="h4">{{ obj.title }}</h3></a>
+                            <p class="text-muted">{{ obj.overview|linebreaks|truncatechars:200 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-          </div>
-          {% endfor %}
         </div>
-      </div>
     </section>
     <!-- Newsletter Section-->
     <section class="newsletter no-padding-top">

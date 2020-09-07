@@ -8,7 +8,7 @@ $(document).ready(function () {
     // ------------------------------------------------------ //
 
     var stylesheet = $('link#theme-stylesheet');
-    $( "<link id='new-stylesheet' rel='stylesheet'>" ).insertAfter(stylesheet);
+    $("<link id='new-stylesheet' rel='stylesheet'>").insertAfter(stylesheet);
     var alternateColour = $('link#new-stylesheet');
 
     if ($.cookie("theme_csspath")) {
@@ -23,7 +23,10 @@ $(document).ready(function () {
 
             alternateColour.attr("href", theme_csspath);
 
-            $.cookie("theme_csspath", theme_csspath, { expires: 365, path: document.URL.substr(0, document.URL.lastIndexOf('/')) });
+            $.cookie("theme_csspath", theme_csspath, {
+                expires: 365,
+                path: document.URL.substr(0, document.URL.lastIndexOf('/'))
+            });
 
         }
 
@@ -38,6 +41,7 @@ $(document).ready(function () {
         var textHeight = $(x).height();
         $(y).css('min-height', textHeight);
     }
+
     equalizeHeight('.featured-posts .text', '.featured-posts .image');
 
     $(window).resize(function () {
@@ -92,7 +96,6 @@ $(document).ready(function () {
     $('.search-area .close-btn').on('click', function () {
         $('.search-area').fadeOut();
     });
-
 
 
     // ---------------------------------------------- //
