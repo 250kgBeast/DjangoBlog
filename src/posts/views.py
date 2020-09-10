@@ -7,21 +7,23 @@ from django.db.models import Count, Q
 
 def search(request):
     query_set = Post.objects.all()
-    query = request.GET.get('q', '')
+    query = request.GET.get('search', '')
     if query:
         query_set = query_set.filter(
             Q(title__icontains=query) |
-            Q(overview__icontains=query)
+            Q(overview__icontains=query) |
+            Q(category__title__icontains=query)
         ).distinct()
     context = {
         'query_set': query_set
     }
     return render(request, 'search_results.html', context)
 
+
 def get_category_count():
-    query_set = Post\
-        .objects\
-        .values('category__title')\
+    query_set = Post \
+        .objects \
+        .values('category__title') \
         .annotate(Count('category__title'))
     return query_set
 
