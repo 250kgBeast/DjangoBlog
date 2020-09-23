@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 User = get_user_model()
 
@@ -30,6 +31,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     category = models.ManyToManyField(Category)
     featured = models.BooleanField(default=True)
+    content = RichTextField()
 
     def __str__(self):
         return self.title
