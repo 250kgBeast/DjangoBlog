@@ -9,7 +9,8 @@ class PostAdminForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('title', 'overview', 'thumbnail', 'category', 'featured',
+                  'content', 'previous_post', 'next_post')
 
 
 class PostAdmin(admin.ModelAdmin):

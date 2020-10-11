@@ -10,12 +10,17 @@
               <div class="post-thumbnail"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></div>
               <div class="post-details">
                 <div class="post-meta d-flex justify-content-between">
-                <!--ToDO: make like this in another template files -->
                 <div class="category">
                     {% for cat in post.category.all %}
                    <a href="#">{{ cat }}</a>
                     {% endfor %}
                 </div>
+                {% if request.user.is_staff %}
+                <div>
+                    <a href="{% url 'post-update' id=post.id %}">Update</a>
+                    <a href="{% url 'post-delete' id=post.id %}">Delete</a>
+                </div>
+                {% endif %}
                 </div>
                 <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">

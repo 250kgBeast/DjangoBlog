@@ -43,6 +43,19 @@ class Post(models.Model):
             'id': self.id
         })
 
+    def post_create(self):
+        pass
+
+    def post_update(self):
+        return reverse('post-update', kwargs={
+            'id': self.id
+        })
+
+    def post_delete(self):
+        return reverse('post-delete', kwargs={
+            'id': self.id
+        })
+
     @property
     def get_comments(self):
         return self.comments.all().order_by('-timestamp')
