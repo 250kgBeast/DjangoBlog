@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Post, Author
+from .models import Post, Author, PostView
 from .forms import CommentForm, PostAdminForm
 from marketing.models import Signup
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -81,6 +81,10 @@ def post(request, id):
     most_recent = Post.objects.order_by('-timestamp')[0:3]
     category_count = get_category_count()
     post = get_object_or_404(Post, id=id)
+
+    if request.user.is_authenticated:
+        PostView.objects.get_or_create(user=request.user, post=post)
+
     form = CommentForm(request.POST or None)
     if request.method == 'POST':
         form.instance.user = request.user
