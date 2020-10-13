@@ -44,8 +44,9 @@
                                         <a href="#">{{ cat }}</a>
                                     {% endfor %}
                                 </div>
-                                <a href="post.html">
-                                    <h2 class="h4">{{ obj.title }}</h2></a>
+                                <a href="{{ obj.get_absolute_url }}">
+                                    <h2 class="h4">{{ obj.title }}</h2>
+                                </a>
                             </header>
                             <p>{{ obj.overview }}</p>
                             <footer class="post-footer d-flex align-items-center"><a href="#"
@@ -88,18 +89,13 @@
             <div class="row">
                 {% for obj in latest %}
                     <div class="post col-md-4">
-                        <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="..."
+                        <div class="post-thumbnail"><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" alt="..."
                                                                      class="img-fluid"></a></div>
                         <div class="post-details">
                             <div class="post-meta d-flex justify-content-between">
                                 <div class="date">{{ obj.timestamp }}</div>
-                                <div class="category">
-                                    {% for cat in obj.category.all %}
-                                        <a href="#">{{ cat }}</a>
-                                    {% endfor %}
-                                </div>
                             </div>
-                            <a href="#">
+                            <a href="{{ obj.get_absolute_url }}">
                                 <h3 class="h4">{{ obj.title }}</h3></a>
                             <p class="text-muted">{{ obj.overview|linebreaks|truncatechars:200 }}</p>
                         </div>
